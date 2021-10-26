@@ -3,6 +3,8 @@
 
 #include "sceneManager.h"
 
+#include "Player.h"
+
 class Play
 {
 private:
