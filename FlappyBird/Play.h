@@ -9,7 +9,7 @@ class Play
 {
 private:
 	sceneManager* manager;
-
+	Player* player;
 public:
 	Play();
 	~Play();

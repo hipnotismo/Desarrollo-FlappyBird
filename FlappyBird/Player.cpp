@@ -51,7 +51,7 @@ void Player::draw()
 
 void Player::reset()
 {
-	rec.x = GetScreenWidth() / 20;
+	rec.x = GetScreenWidth() / 2;
 	rec.y = GetScreenHeight() / 2;
 }
 

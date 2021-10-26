@@ -6,13 +6,13 @@ Play::Play()
 	Color color;
 	
 
-	rec.x = GetScreenWidth() / 20;
+	rec.x = GetScreenWidth() / 2;
 	rec.y = GetScreenHeight() / 2;
 	rec.width = 40;
 	rec.height = 40;
 	color = GREEN;
 
-	Player* player = new Player(rec, color);
+	this->player = new Player(rec, color);
 }
 
 void Play::setSceneManager(sceneManager* manager)
@@ -22,12 +22,12 @@ void Play::setSceneManager(sceneManager* manager)
 
 Play::~Play()
 {
-
+	delete player;
 }
 
 void Play::playUpdate()
 {
-	
+	player->movementOnePlayer();
 }
 
 void Play::playDraw()
