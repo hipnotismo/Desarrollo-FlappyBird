@@ -7,6 +7,7 @@ void playGame()
 	sceneManager* manager =  new sceneManager();
 	MainMenu* mainMenuScene = new MainMenu();
 	Credits* creditsScene = new Credits();
+	Play* playScene = new Play();
 	bool mainMenuInited = false;
 	bool creditsInited = false;
 	bool playInited = false;
@@ -35,6 +36,13 @@ void playGame()
 			creditsScene->creditsDraw();
 			break;
 		case Scene::Play:
+			if (!playInited)
+			{
+				playScene->setSceneManager(manager);
+				playInited = true;
+			}
+			playScene->playUpdate();
+			playScene->playDraw();
 			break;
 		case Scene::Exit:
 			break;
