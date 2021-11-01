@@ -4,6 +4,7 @@ void playGame()
 {
 	const int windowWidth = 1280;
 	const int windowHeight = 720;
+	InitWindow(windowWidth, windowHeight, "Flappy Loli");
 	sceneManager* manager =  new sceneManager();
 	MainMenu* mainMenuScene = new MainMenu();
 	Credits* creditsScene = new Credits();
@@ -12,7 +13,6 @@ void playGame()
 	bool creditsInited = false;
 	bool playInited = false;
 	manager->changeScene(Scene::MainMenu);
-	InitWindow(windowWidth, windowHeight, "Flappy Loli");
 	while (!WindowShouldClose())
 	{
 		switch (manager->getCurrentScene())
