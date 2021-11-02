@@ -4,10 +4,11 @@ class Player {
 private:
 	Rectangle rec;
 	Color color;
-	
+	Texture2D texture;
+	Texture2D texture2;
 	bool falling;
 public:
-	Player(Rectangle rec, Color color);
+	Player(Rectangle rec, Color color, Texture2D texture, Texture2D texture2);
 	~Player();
 	void movementOnePlayer();
 	void movementTwoPlayers();

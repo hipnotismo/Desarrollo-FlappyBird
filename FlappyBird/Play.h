@@ -12,6 +12,14 @@ private:
 	sceneManager* manager;
 	Player* player;
 	Obstacle* obstacle;
+	Obstacle* obstacle2;
+	Obstacle* obstacle3;
+
+	Image bird;
+	Image bird2;
+	Texture2D texture;
+	Texture2D texture2;
+
 	bool pause = false;
 public:
 	Play();

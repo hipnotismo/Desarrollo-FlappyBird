@@ -1,11 +1,13 @@
 #include "Player.h"
 
-Player::Player(Rectangle rec, Color color)
+Player::Player(Rectangle rec, Color color, Texture2D texture, Texture2D texture2)
 {
 
 
 	this->rec = rec;
 	this->color = color;
+	this->texture = texture;
+	this->texture2 = texture2;
 	
 }
 
@@ -44,9 +46,11 @@ void Player::movementTwoPlayers()
 void Player::draw()
 {
 	if (falling)
-		DrawRectangle(rec.x, rec.y, rec.width, rec.height, color );
+		//DrawRectangle(rec.x, rec.y, rec.width, rec.height, color );
+		DrawTexture(texture,rec.x,rec.y,color);
 	else
-		DrawRectangle(rec.x, rec.y, rec.width, rec.height, color);
+		//DrawRectangle(rec.x, rec.y, rec.width, rec.height, color);
+		DrawTexture(texture2, rec.x, rec.y, color);
 }
 
 void Player::reset()
