@@ -11,6 +11,7 @@ class Play
 private:
 	sceneManager* manager;
 	Player* player;
+	Player* player2;
 	Obstacle* obstacle;
 	Obstacle* obstacle2;
 	Obstacle* obstacle3;

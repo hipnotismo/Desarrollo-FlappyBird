@@ -17,7 +17,7 @@ Player::~Player()
 
 void Player::movementOnePlayer()
 {
-	if (IsKeyDown(KEY_SPACE))
+	if (IsKeyDown(KEY_Q))
 	{
 		rec.y -= GetFrameTime() * 300;
 		falling = true;
@@ -31,7 +31,7 @@ void Player::movementOnePlayer()
 
 void Player::movementTwoPlayers()
 {
-	if (IsKeyDown(KEY_ENTER))
+	if (IsKeyDown(KEY_E))
 	{
 		rec.y -= GetFrameTime() * 300;
 		falling = true;

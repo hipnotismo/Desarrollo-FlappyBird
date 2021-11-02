@@ -5,6 +5,7 @@ Play::Play()
 {
 	//player
 	Rectangle rec;
+	Rectangle rec2;
 	Color color;
 	Color color2;
 	//obstacles
@@ -26,7 +27,7 @@ Play::Play()
 	this->texture2 = LoadTextureFromImage(bird2);
 
 	int gap = 90;
-	
+	//player 1
 	rec.x = GetScreenWidth() / 2;
 	rec.y = GetScreenHeight() / 2;
 	rec.width = 40;
@@ -34,6 +35,13 @@ Play::Play()
 	color = GREEN;
 	this->player = new Player(rec, color, texture, texture2);
 
+	//player 2
+	rec2.x = GetScreenWidth() / 3;
+	rec2.y = GetScreenHeight() / 2;
+	rec2.width = 40;
+	rec2.height = 40;
+	color = GREEN;
+	this->player2 = new Player(rec2, color, texture, texture2);
 	//obs 1
 	recTop.width = GetScreenWidth() / 10;
 	recTop.height = (GetScreenHeight() / 2) - gap;
@@ -75,7 +83,10 @@ void Play::setSceneManager(sceneManager* manager)
 Play::~Play()
 {
 	delete player;
+	delete player2;
 	delete obstacle;
+	delete obstacle2;
+	//delete obstacle3;
 }
 
 void Play::playUpdate(){
@@ -84,6 +95,7 @@ void Play::playUpdate(){
 	if (!pause)
 	{
 		player->movementOnePlayer();
+		player2->movementTwoPlayers();
 		obstacle->movement();
 		obstacle2->movement();
 		obstacle->respawn();
@@ -104,6 +116,7 @@ void Play::playDraw()
 	BeginDrawing();
 	ClearBackground(RED);
 	player->draw();
+	player2->draw();
 	obstacle->draw();
 	obstacle2->draw();
 
