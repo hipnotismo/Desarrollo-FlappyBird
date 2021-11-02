@@ -8,7 +8,7 @@ private:
 	Rectangle recBot;
 	Color color;
 public:
-	Obstacle();
+	Obstacle(Rectangle rec,Rectangle rec2, Color color);
 	~Obstacle();
 	void movement();
 	void respawn();

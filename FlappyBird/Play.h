@@ -12,6 +12,7 @@ private:
 	sceneManager* manager;
 	Player* player;
 	Obstacle* obstacle;
+	bool pause = false;
 public:
 	Play();
 	~Play();
@@ -19,4 +20,3 @@ public:
 	void playUpdate();
 	void playDraw();
 };
-

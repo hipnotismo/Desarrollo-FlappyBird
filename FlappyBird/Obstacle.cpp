@@ -1,8 +1,12 @@
 #include "obstacle.h"
 
-Obstacle::Obstacle()
-{
-	gap = 90; //Player size * 3
+Obstacle::Obstacle(Rectangle rec, Rectangle rec2, Color color){
+	
+	gap = 90; 
+	this->recTop = rec;
+	this->recBot = rec2;
+	this->color = color;
+	/*
 	recTop.x = GetScreenWidth() + 100;
 	recTop.y = 0;
 	recTop.width = GetScreenWidth() / 10;
@@ -14,6 +18,7 @@ Obstacle::Obstacle()
 	recBot.y = (GetScreenHeight() / 2) + gap;
 
 	color = RED;
+	*/
 }
 
 Obstacle::~Obstacle()
