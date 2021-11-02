@@ -9,6 +9,8 @@ private:
 	Button* playButton;
 	Button* creditsButton;
 	Button* exitButton;
+	Image cover;
+	Texture2D texture;
 public:
 	MainMenu();
 	~MainMenu();

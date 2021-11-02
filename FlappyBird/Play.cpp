@@ -17,10 +17,11 @@ Play::Play()
 	rec.height = 40;
 	color = GREEN;
 
-	recTop.x = GetScreenWidth() + 100;
-	recTop.y = 0;
+	
 	recTop.width = GetScreenWidth() / 10;
 	recTop.height = (GetScreenHeight() / 2) - gap;
+	recTop.x = GetScreenWidth() + 100;
+	recTop.y = 0;
 
 	recBot.width = GetScreenWidth() / 10;
 	recBot.height = (GetScreenHeight() / 2) + gap;
@@ -29,6 +30,9 @@ Play::Play()
 	color2 = WHITE;
 	this->player = new Player(rec, color);
 	this->obstacle = new Obstacle(recTop, recBot,color2);
+
+	std::cout << rec.x << std::endl;
+	std::cout << rec.y << std::endl;
 
 }
 

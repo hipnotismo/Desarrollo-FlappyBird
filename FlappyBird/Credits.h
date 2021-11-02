@@ -7,6 +7,8 @@ class Credits
 private:
 	sceneManager* manager;
 	Button* backButton;
+	Image cover;
+	Texture2D texture;
 public:
 	Credits();
 	~Credits();
