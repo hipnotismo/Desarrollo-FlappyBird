@@ -30,7 +30,7 @@ Play::Play()
 	this->texture2 = LoadTextureFromImage(bird2);
 	UnloadImage(bird2);
 
-	int gap = 90;
+	int gap = 50;
 	//moving background
 	this->back = LoadImage("Res/11_background.png");
 	ImageResize(&back, 1280, 720);
@@ -72,7 +72,7 @@ Play::Play()
 	rec2.width = 40;
 	rec2.height = 40;
 	color = GREEN;
-	this->player2 = new Player(rec2, color, texture, texture2);
+	this->player2 = new Player(rec2, RED, texture, texture2);
 
 	//obs 1
 	recTop.width = GetScreenWidth() / 10;
@@ -98,9 +98,21 @@ Play::Play()
 	recBot2.y = (GetScreenHeight() / 2) - 100 + gap;
 	color2 = WHITE;
 
+	recTop3.width = GetScreenWidth() / 10;
+	recTop3.height = (GetScreenHeight() / 2) - gap;
+	recTop3.x = GetScreenWidth() + 1100;
+	recTop3.y = -100;
+
+	recBot3.width = GetScreenWidth() / 10;
+	recBot3.height = (GetScreenHeight() / 2) + gap;
+	recBot3.x = GetScreenWidth() + 1100;
+	recBot3.y = (GetScreenHeight() / 2) - 100 + gap;
+	color2 = WHITE;
+
+
 	this->obstacle = new Obstacle(recTop, recBot,color2);
 	this->obstacle2 = new Obstacle(recTop2, recBot2, color2);
-	//this->obstacle3 = new Obstacle(recTop3, recBot3, color2);
+	this->obstacle3 = new Obstacle(recTop3, recBot3, color2);
 
 	std::cout << rec.x << std::endl;
 	std::cout << rec.y << std::endl;
@@ -118,11 +130,12 @@ Play::~Play()
 	delete player2;
 	delete obstacle;
 	delete obstacle2;
-	//delete obstacle3;
+	delete obstacle3;
 }
 
-void Play::playUpdate(){
+void Play::playUpdate() {
 	if (IsKeyPressed('P')) pause = !pause;
+		
 	if (IsKeyPressed('M')) multy = !multy;
 
 	if (pause)
@@ -142,16 +155,68 @@ void Play::playUpdate(){
 		obstacle2->respawn();
 		if (multy) {
 			player2->movementTwoPlayers();
+			if (CheckCollisionRecs(player->getRec(), obstacle->getRecTop()))
+			{
 
+				manager->changeScene(Scene::MainMenu);
+			}
+
+			if (CheckCollisionRecs(player->getRec(), obstacle->getRecBot())) {
+				manager->changeScene(Scene::MainMenu);
+			}
+			if (CheckCollisionRecs(player->getRec(), obstacle2->getRecTop()))
+			{
+
+				manager->changeScene(Scene::MainMenu);
+			}
+
+			if (CheckCollisionRecs(player->getRec(), obstacle2->getRecBot())) {
+				manager->changeScene(Scene::MainMenu);
+			}
+			if (CheckCollisionRecs(player->getRec(), obstacle3->getRecTop()))
+			{
+
+				manager->changeScene(Scene::MainMenu);
+			}
+
+			if (CheckCollisionRecs(player->getRec(), obstacle3->getRecBot())) {
+				manager->changeScene(Scene::MainMenu);
+			}
 		}
-		/*
+		
 		if (CheckCollisionRecs(player->getRec(), obstacle->getRecTop()))
+		{
+			
 			manager->changeScene(Scene::MainMenu);
+		}
 
-		if (CheckCollisionRecs(player->getRec(), obstacle->getRecBot()))
+		if (CheckCollisionRecs(player->getRec(), obstacle->getRecBot())) {
 			manager->changeScene(Scene::MainMenu);
-		*/
+		}
+
+		if (CheckCollisionRecs(player->getRec(), obstacle2->getRecTop()))
+		{
+
+			manager->changeScene(Scene::MainMenu);
+		}
+
+		if (CheckCollisionRecs(player->getRec(), obstacle2->getRecBot())) {
+			manager->changeScene(Scene::MainMenu);
+		}
+
+		if (CheckCollisionRecs(player->getRec(), obstacle3->getRecTop()))
+		{
+
+			manager->changeScene(Scene::MainMenu);
+		}
+
+		if (CheckCollisionRecs(player->getRec(), obstacle3->getRecBot())) {
+			manager->changeScene(Scene::MainMenu);
+		}
+
 	}
+
+	
 }
 
 void Play::playDraw()
@@ -173,7 +238,13 @@ void Play::playDraw()
 	player->draw();
 	obstacle->draw();
 	obstacle2->draw();
+	obstacle3->draw();
+
 	if (!pause) {
+		DrawText("Pres P to start the game", 10, 10, 20, RED);
+		DrawText("Use Q to control the first character", 10, 30, 20, RED);
+		DrawText("Use E to control the second character", 10, 50, 20, RED);
+		DrawText("Pres M to activate two palyer mode", 10, 70, 20, RED);
 
 	}
 	if (multy) {

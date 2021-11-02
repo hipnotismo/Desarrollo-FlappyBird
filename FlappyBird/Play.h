@@ -32,6 +32,7 @@ private:
 
 	bool pause = false;
 	bool multy = false;
+	bool win = false;
 
 	float scrollingBack;
 	float scrollingMid;
