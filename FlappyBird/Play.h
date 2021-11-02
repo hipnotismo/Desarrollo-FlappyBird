@@ -21,9 +21,21 @@ private:
 	Texture2D texture;
 	Texture2D texture2;
 
+	Image back;
+	Image mid;
+	Image mod;
+	Image fore;
+	Texture2D background;
+	Texture2D midground;
+	Texture2D modground;
+	Texture2D foreground;
+
 	bool pause = false;
 	bool multy = false;
 
+	float scrollingBack;
+	float scrollingMid;
+	float scrollingFore;
 public:
 	Play();
 	~Play();

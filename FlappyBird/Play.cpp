@@ -8,6 +8,7 @@ Play::Play()
 	Rectangle rec2;
 	Color color;
 	Color color2;
+
 	//obstacles
 	Rectangle recTop;
 	Rectangle recBot;
@@ -17,16 +18,46 @@ Play::Play()
 
 	Rectangle recTop3;
 	Rectangle recBot3;
+
 	//textures
 	this->bird = LoadImage("Res/Transparent PNG/frame-1.png");
 	ImageResize(&bird, 40, 40);
 	this->texture = LoadTextureFromImage(bird);
+	UnloadImage(bird);
 
 	this->bird2 = LoadImage("Res/Transparent PNG/frame-2.png");
 	ImageResize(&bird2, 40, 40);
 	this->texture2 = LoadTextureFromImage(bird2);
+	UnloadImage(bird2);
 
 	int gap = 90;
+	//moving background
+	this->back = LoadImage("Res/11_background.png");
+	ImageResize(&back, 1280, 720);
+	this->background = LoadTextureFromImage(back);
+	UnloadImage(back);
+
+	this->mid = LoadImage("Res/03_distant_trees.png");
+	ImageResize(&mid, 1280, 720);
+	this->midground = LoadTextureFromImage(mid);
+	UnloadImage(mid);
+
+
+	this->mod = LoadImage("Res/02_trees and bushes.png");
+	ImageResize(&mod, 1280, 720);
+	this->modground = LoadTextureFromImage(mod);
+	UnloadImage(mod);
+
+	this->fore = LoadImage("Res/01_ground.png");
+	ImageResize(&fore, 1280, 720);
+	this->foreground = LoadTextureFromImage(fore);
+	UnloadImage(fore);
+
+	scrollingBack = 0.0f;
+	scrollingMid = 0.0f;
+	scrollingFore = 0.0f;
+
+
 	//player 1
 	rec.x = GetScreenWidth() / 2;
 	rec.y = GetScreenHeight() / 2;
@@ -42,6 +73,7 @@ Play::Play()
 	rec2.height = 40;
 	color = GREEN;
 	this->player2 = new Player(rec2, color, texture, texture2);
+
 	//obs 1
 	recTop.width = GetScreenWidth() / 10;
 	recTop.height = (GetScreenHeight() / 2) - gap;
@@ -95,6 +127,14 @@ void Play::playUpdate(){
 
 	if (pause)
 	{
+		scrollingBack -= 0.1f;
+		scrollingMid -= 0.5f;
+		scrollingFore -= 1.0f;
+
+		if (scrollingBack <= -background.width * 2) scrollingBack = 0;
+		if (scrollingMid <= -midground.width * 2) scrollingMid = 0;
+		if (scrollingFore <= -foreground.width * 2) scrollingFore = 0;
+
 		player->movementOnePlayer();
 		obstacle->movement();
 		obstacle2->movement();
@@ -118,9 +158,24 @@ void Play::playDraw()
 {
 	BeginDrawing();
 	ClearBackground(RED);
+	DrawTextureEx(background, {scrollingBack, 0 }, 0.0f, 2.0f, WHITE);
+	DrawTextureEx(background, { background.width * 2 + scrollingBack, 0 }, 0.0f, 2.0f, WHITE);
+
+	DrawTextureEx(midground,  { scrollingMid, -500 }, 0.0f, 2.0f, WHITE);
+	DrawTextureEx(midground,  { midground.width * 2 + scrollingMid, -500 }, 0.0f, 2.0f, WHITE);
+
+	DrawTextureEx(modground, { scrollingMid, -500 }, 0.0f, 2.0f, WHITE);
+	DrawTextureEx(modground, { modground.width * 2 + scrollingMid, -500 }, 0.0f, 2.0f, WHITE);
+
+	//DrawTextureEx(foreground,  { scrollingFore, -700 }, 0.0f, 0.0f, WHITE);
+//	DrawTextureEx(foreground,  { foreground.width * 2 + scrollingFore, -700 }, 0.0f, 2.0f, WHITE);
+
 	player->draw();
 	obstacle->draw();
 	obstacle2->draw();
+	if (!pause) {
+
+	}
 	if (multy) {
 		player2->draw();
 
