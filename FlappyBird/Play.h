@@ -22,6 +22,8 @@ private:
 	Texture2D texture2;
 
 	bool pause = false;
+	bool multy = false;
+
 public:
 	Play();
 	~Play();

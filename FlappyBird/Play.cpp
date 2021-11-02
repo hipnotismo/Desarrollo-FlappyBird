@@ -91,16 +91,19 @@ Play::~Play()
 
 void Play::playUpdate(){
 	if (IsKeyPressed('P')) pause = !pause;
+	if (IsKeyPressed('M')) multy = !multy;
 
-	if (!pause)
+	if (pause)
 	{
 		player->movementOnePlayer();
-		player2->movementTwoPlayers();
 		obstacle->movement();
 		obstacle2->movement();
 		obstacle->respawn();
 		obstacle2->respawn();
+		if (multy) {
+			player2->movementTwoPlayers();
 
+		}
 		/*
 		if (CheckCollisionRecs(player->getRec(), obstacle->getRecTop()))
 			manager->changeScene(Scene::MainMenu);
@@ -116,9 +119,11 @@ void Play::playDraw()
 	BeginDrawing();
 	ClearBackground(RED);
 	player->draw();
-	player2->draw();
 	obstacle->draw();
 	obstacle2->draw();
+	if (multy) {
+		player2->draw();
 
+	}
 	EndDrawing();
 }
